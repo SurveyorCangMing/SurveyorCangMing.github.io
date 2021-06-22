@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;example.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.3.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><meta name="description" content="概念 spawn 虫巢 母巢 (spawn) 是你的殖民地中心。此建筑可以创建、更新和回收 creeps 。 你能通过 Game.spanws 这个hash list 访问所有的母巢 (spawn) 。 母巢 (spawn) 每 tick 会生产少许能量，以免玩家陷入无 creep 可用、无 creep 可造的困境。  creep 爬虫 creep 是你的单位, creep 可以移动、采集能量、建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全局对象Game和基础脚本">
+<meta property="og:url" content="http://example.com/2021/05/15/%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="沧月の快乐小窝">
+<meta property="og:description" content="概念 spawn 虫巢 母巢 (spawn) 是你的殖民地中心。此建筑可以创建、更新和回收 creeps 。 你能通过 Game.spanws 这个hash list 访问所有的母巢 (spawn) 。 母巢 (spawn) 每 tick 会生产少许能量，以免玩家陷入无 creep 可用、无 creep 可造的困境。  creep 爬虫 creep 是你的单位, creep 可以移动、采集能量、建">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-14T23:40:23.000Z">
+<meta property="article:modified_time" content="2021-06-22T07:54:21.808Z">
+<meta property="article:author" content="cang_ming">
+<meta property="article:tag" content="&lt;Screeps&gt;_">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/05/15/%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;05&#x2F;15&#x2F;%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;15&#x2F;全局对象Game和基础脚本&#x2F;&quot;,&quot;title&quot;:&quot;全局对象Game和基础脚本&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>全局对象Game和基础脚本 | 沧月の快乐小窝</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">沧月の快乐小窝</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">forever love <br> 5ZC05oCd5L2z_QAQ</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-photos"><a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>相册</a></li>
+        <li class="menu-item menu-item-empire"><a href="/empire/" rel="section"><i class="fab fa-first-order fa-fw"></i>帝国</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Game"><span class="nav-number">2.</span> <span class="nav-text">Game</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.0.1.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Game-creeps"><span class="nav-number">3.</span> <span class="nav-text">Game.creeps</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cang_ming"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">cang_ming</p>
+  <div class="site-description" itemprop="description">I'll be with you. <br> From now and for always.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cang_ming">
+      <meta itemprop="description" content="I'll be with you. <br> From now and for always.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沧月の快乐小窝">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          全局对象Game和基础脚本
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+  
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-15 07:40:23" itemprop="dateCreated datePublished" datetime="2021-05-15T07:40:23+08:00">2021-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Screeps/" itemprop="url" rel="index"><span itemprop="name"><Screeps>_</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ol>
+<li><p>spawn 虫巢</p>
+<p>母巢 (spawn) 是你的殖民地中心。此建筑可以创建、更新和回收 creeps 。 你能通过 Game.spanws 这个hash list 访问所有的母巢 (spawn) 。 母巢 (spawn) 每 tick 会生产少许能量，以免玩家陷入无 creep 可用、无 creep 可造的困境。</p>
+</li>
+<li><p>creep 爬虫</p>
+<p>creep 是你的单位, creep 可以移动、采集能量、建造建筑、攻击其他 creep 以及执行其他动作。每个 creep 都由最多 50 个身体部件构成，身体部件的类型如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">身体部件</th>
+<th align="left">孵化成本</th>
+<th align="left">每个部件效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>MOVE</code></td>
+<td align="left">50</td>
+<td align="left">每 tick 减少 2 点疲惫值</td>
+</tr>
+<tr>
+<td align="left"><code>WORK</code></td>
+<td align="left">100</td>
+<td align="left">每 tick 从能量源采集 2 单位能量。每 tick 从矿区采集 1 单位矿物。每 tick 增加工地建设进度 5 点，花费 5 单位能量。每 tick 增加建筑 100 耐久度，花费 1 单位能量。每 tick 拆减建筑 50 点耐久，并返还 0.25 单位能量。每 tick 提高控制器升级进度 1 点，花费 1 单位能量。</td>
+</tr>
+<tr>
+<td align="left"><code>CARRY</code></td>
+<td align="left">50</td>
+<td align="left">携带最多 50 单位资源。</td>
+</tr>
+<tr>
+<td align="left"><code>ATTACK</code></td>
+<td align="left">80</td>
+<td align="left">对相邻的 creep 或建筑造成 30 点伤害。</td>
+</tr>
+<tr>
+<td align="left"><code>RANGED_ATTACK</code></td>
+<td align="left">150</td>
+<td align="left">单个目标时，每 tick 对 creep 或建筑造成 10 点伤害，范围为 3 格。多个目标时，每 tick 对范围内所有 creep 与建筑造成 1-4-10 点伤害，具体伤害取决于距离，范围为 3 格。</td>
+</tr>
+<tr>
+<td align="left"><code>HEAL</code></td>
+<td align="left">250</td>
+<td align="left">治疗对象可为自己或其它 creep。自愈或治疗相邻 creep 时每 tick 恢复 12 点耐久，一定距离内远程治疗每 tick 恢复 4 点耐久。</td>
+</tr>
+<tr>
+<td align="left"><code>CLAIM</code></td>
+<td align="left">600</td>
+<td align="left">占领一个中立房间的控制器。每部件每 tick 使己方对中立房间控制器的预定时间增加 1 tick，或使其他玩家的预定时间减少 1 tick。每部件每 tick 使其他玩家控制器降级计数器加速 300 tick。注：拥有该部件的 creep 寿命只有 600 tick，且无法被 renew。</td>
+</tr>
+<tr>
+<td align="left"><code>TOUGH</code></td>
+<td align="left">10</td>
+<td align="left">无附加效果，唯一作用是增加 creep 的最大耐久值。可被强化以承受更多伤害。</td>
+</tr>
+</tbody></table>
+<p>生成爬虫的孵化成本类型为能量，从SPAWN和EXTENSION中获取</p>
+</li>
+</ol>
+<h1 id="Game"><a href="#Game" class="headerlink" title="Game"></a>Game</h1><ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Game.spawns[&#39;spawn 名&#39;]</span><br><span class="line">object&lt;string, StructureSpawn&gt;</span><br></pre></td></tr></table></figure>
+
+<p>包含你所有 spawn 的 hash，以 spawn 名作为关键字。</p>
+</li>
+<li><p>```<br>Game.creeps[‘creep 名’]<br>object&lt;string, Creep&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   包含你所有 creep 的 hash，并以 creep 名作为关键字。</span><br><span class="line"></span><br><span class="line"># Game.spawns</span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;javascript</span><br><span class="line">   Game.spawns[&#39;spawn 名&#39;].spawnCreep((BODY), &#39;name&#39;, &#123;opts&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>启动 creep 孵化过程。所需的能量量可以从房间里的所有母巢和扩展中提取出来。</p>
+<table>
+<thead>
+<tr>
+<th align="left">parameter</th>
+<th align="left">type</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>body</code></td>
+<td align="left">array<string></td>
+<td align="left">描述新 creep’s body 的数组。应该包含1至50个元素（以下常量之一）<code>WORK</code> <code>MOVE</code> <code>CARRY</code> <code>ATTACK</code> <code>RANGED_ATTACK</code> <code>HEAL</code> <code>TOUGH</code> <code>CLAIM</code></td>
+</tr>
+<tr>
+<td align="left"><code>name</code></td>
+<td align="left">string</td>
+<td align="left">新 creep 的名字。它应是个独一无二的 creep 名以保证 <code>Game.creeps</code> 不含有重名的的 creep 。</td>
+</tr>
+<tr>
+<td align="left"><code>opts (可选)</code></td>
+<td align="left">object</td>
+<td align="left">为孵化进程提供附加选项的对象。<br>1. memory （any）一个新 creep 的 memory 。如果提供，它将立即存储到<code>Memory.creeps[name]</code>。<br>2. energyStructures （array）孵化时使用能量的 spawns/extensions 数组，建筑将按顺序使用其中的能量。<br>3. dryRun （boolean）如果“dryRun”为 true，则操作将仅检查是否可以孵化 creep。<br>4. directions （array）设置 creep 出生时移动的方向，是一个带有以下常量的数组:<code>TOP</code> <code>TOP_RIGHT</code> <code>RIGHT</code> <code>BOTTOM_RIGHT</code> <code>BOTTOM</code> <code>BOTTOM_LEFT</code> <code>LEFT</code> <code>TOP_LEFT</code></td>
+</tr>
+</tbody></table>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>如下错误码之一：</p>
+<table>
+<thead>
+<tr>
+<th align="left">constant</th>
+<th align="left">value</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>OK</code></td>
+<td align="left">0</td>
+<td align="left">这个操作已经成功纳入计划。</td>
+</tr>
+<tr>
+<td align="left"><code>ERR_NOT_OWNER</code></td>
+<td align="left">-1</td>
+<td align="left">你不是该母巢 (spawn) 的所有者。</td>
+</tr>
+<tr>
+<td align="left"><code>ERR_NAME_EXISTS</code></td>
+<td align="left">-3</td>
+<td align="left">已经有一个叫这个名字的 creep 了。</td>
+</tr>
+<tr>
+<td align="left"><code>ERR_BUSY</code></td>
+<td align="left">-4</td>
+<td align="left">这个母巢 (spawn) 已经在孵化另一个 creep 了。</td>
+</tr>
+<tr>
+<td align="left"><code>ERR_NOT_ENOUGH_ENERGY</code></td>
+<td align="left">-6</td>
+<td align="left">这个母巢 (spawn) 和他的扩展包含的能量不足以孵化具有给定 body 的 creep。</td>
+</tr>
+<tr>
+<td align="left"><code>ERR_INVALID_ARGS</code></td>
+<td align="left">-10</td>
+<td align="left">Body 没有被恰当地描述。</td>
+</tr>
+<tr>
+<td align="left"><code>ERR_RCL_NOT_ENOUGH</code></td>
+<td align="left">-14</td>
+<td align="left">您的房间控制器级别不足以使用此 spawn。</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h1 id="Game-creeps"><a href="#Game-creeps" class="headerlink" title="Game.creeps"></a>Game.creeps</h1><ol>
+<li><pre><code class="javascript">Game.creeps[&#39;creep 名&#39;].memory.memory项目名=&#39;内容&#39;
+</code></pre>
+<p>指向Memory.creeps[creep.name]的链接。可以访问creep的内存对象。</p>
+<p>可以暂时理解为每个creep的备忘录。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Screeps/" rel="tag"># <Screeps>_</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/29/%E6%99%BA%E8%80%85%E8%A8%80%E8%AE%BA/" rel="prev" title="智者言论">
+                  <i class="fa fa-chevron-left"></i> 智者言论
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/15/%E6%8F%92%E9%98%9F%E7%AE%97%E6%B3%95/" rel="next" title="插队算法">
+                  插队算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cang_ming</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">2k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
