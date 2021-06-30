@@ -19,30 +19,28 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;example.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.3.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><meta name="description" content="芜湖~">
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;example.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.3.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><meta name="description" content="原理 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。 基础函数 修改memory 1Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;项目内容&#39;  可以通过这个指令给creep添加一个memory属性，例如设定职业 1Game.creeps[&#39;builder1&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Terraria徽章两级啦">
-<meta property="og:url" content="http://example.com/2021/04/27/Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6/index.html">
+<meta property="og:title" content="按职业分配工作">
+<meta property="og:url" content="http://example.com/2021/06/30/%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/index.html">
 <meta property="og:site_name" content="沧月の快乐小窝">
-<meta property="og:description" content="芜湖~">
+<meta property="og:description" content="原理 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。 基础函数 修改memory 1Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;项目内容&#39;  可以通过这个指令给creep添加一个memory属性，例如设定职业 1Game.creeps[&#39;builder1&amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/04/27/Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6/1.jpg">
-<meta property="article:published_time" content="2021-04-27T14:30:00.000Z">
-<meta property="article:modified_time" content="2021-06-22T05:37:58.558Z">
+<meta property="article:published_time" content="2021-06-30T09:14:07.000Z">
+<meta property="article:modified_time" content="2021-06-30T11:54:50.923Z">
 <meta property="article:author" content="cang_ming">
-<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="&lt;Screeps&gt;_">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/04/27/Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6/1.jpg">
 
 
-<link rel="canonical" href="http://example.com/2021/04/27/Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6/">
+<link rel="canonical" href="http://example.com/2021/06/30/%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;27&#x2F;Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;04&#x2F;27&#x2F;Terraria徽章两级啦&#x2F;&quot;,&quot;title&quot;:&quot;Terraria徽章两级啦&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;06&#x2F;30&#x2F;%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;30&#x2F;按职业分配工作&#x2F;&quot;,&quot;title&quot;:&quot;按职业分配工作&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>Terraria徽章两级啦 | 沧月の快乐小窝</title><script src="/js/config.js"></script>
+<title>按职业分配工作 | 沧月の快乐小窝</title><script src="/js/config.js"></script>
   
 
 
@@ -138,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -151,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">基础函数</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -218,7 +217,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/27/Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/30/%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -231,7 +230,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Terraria徽章两级啦
+          按职业分配工作
         </h1>
 
         <div class="post-meta-container">
@@ -243,7 +242,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-04-27 22:30:00" itemprop="dateCreated datePublished" datetime="2021-04-27T22:30:00+08:00">2021-04-27</time>
+      <time title="创建时间：2021-06-30 17:14:07" itemprop="dateCreated datePublished" datetime="2021-06-30T17:14:07+08:00">2021-06-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,7 +250,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
+          <a href="/categories/Screeps/" itemprop="url" rel="index"><span itemprop="name"><Screeps>_</span></a>
         </span>
     </span>
 
@@ -263,7 +262,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3</span>
+      <span>275</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -281,9 +280,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <img src="/2021/04/27/Terraria%E5%BE%BD%E7%AB%A0%E4%B8%A4%E7%BA%A7%E5%95%A6/1.jpg" class="">
+        <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p> 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。</p>
+<h1 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h1><ol>
+<li><p>修改memory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;项目内容&#39;</span><br></pre></td></tr></table></figure>
 
-<p>芜湖~</p>
+<p>可以通过这个指令给creep添加一个memory属性，例如设定职业</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Game.creeps[&#39;builder1&#39;].memory.role&#x3D;&#39;builder&#39;</span><br></pre></td></tr></table></figure>
+
+<p>这里role代表职业，也可以改成别的（自己看得懂就行OAO）</p>
+</li>
+<li><p>检测creep的memory</p>
+</li>
+</ol>
 
     </div>
 
@@ -293,21 +302,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
+              <a href="/tags/Screeps/" rel="tag"># <Screeps>_</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/04/23/%E3%80%8A%E5%85%B3%E4%BA%8EAppleCare+%E5%88%9A%E5%88%B0%E6%9C%9F%E7%AC%AC%E4%B8%80%E5%A4%A9%E5%B0%B1%E6%8A%8A%E8%83%8C%E5%A3%B3%E6%91%94%E7%A2%8E%E8%BF%99%E4%BB%B6%E4%BA%8B%E3%80%8B/" rel="prev" title="《关于AppleCare+刚到期第一天就把背壳摔碎这件事》">
-                  <i class="fa fa-chevron-left"></i> 《关于AppleCare+刚到期第一天就把背壳摔碎这件事》
+                <a href="/2021/05/15/%E6%8F%92%E9%98%9F%E7%AE%97%E6%B3%95/" rel="prev" title="插队算法">
+                  <i class="fa fa-chevron-left"></i> 插队算法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/04/29/%E6%99%BA%E8%80%85%E8%A8%80%E8%AE%BA/" rel="next" title="智者言论">
-                  智者言论 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

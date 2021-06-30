@@ -161,7 +161,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -203,6 +203,108 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/30/%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cang_ming">
+      <meta itemprop="description" content="I'll be with you. <br> From now and for always.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沧月の快乐小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/30/%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/" class="post-title-link" itemprop="url">按职业分配工作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+  
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-30 17:14:07" itemprop="dateCreated datePublished" datetime="2021-06-30T17:14:07+08:00">2021-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Screeps/" itemprop="url" rel="index"><span itemprop="name"><Screeps>_</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>275</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p> 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。</p>
+<h1 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h1><ol>
+<li><p>修改memory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;项目内容&#39;</span><br></pre></td></tr></table></figure>
+
+<p>可以通过这个指令给creep添加一个memory属性，例如设定职业</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Game.creeps[&#39;builder1&#39;].memory.role&#x3D;&#39;builder&#39;</span><br></pre></td></tr></table></figure>
+
+<p>这里role代表职业，也可以改成别的（自己看得懂就行OAO）</p>
+</li>
+<li><p>检测creep的memory</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -431,8 +533,13 @@
 
 <p>包含你所有 spawn 的 hash，以 spawn 名作为关键字。</p>
 </li>
-<li><p>```<br>Game.creeps[‘creep 名’]<br>object&lt;string, Creep&gt;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   包含你所有 creep 的 hash，并以 creep 名作为关键字。</span><br><span class="line"></span><br><span class="line"># Game.spawns</span><br><span class="line"></span><br><span class="line">1. &#96;&#96;&#96;javascript</span><br><span class="line">   Game.spawns[&#39;spawn 名&#39;].spawnCreep((BODY), &#39;name&#39;, &#123;opts&#125;);</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;]</span><br><span class="line">object&lt;string, Creep&gt;</span><br></pre></td></tr></table></figure>
+
+<p>包含你所有 creep 的 hash，并以 creep 名作为关键字。</p>
+</li>
+</ol>
+<h1 id="Game-spawns"><a href="#Game-spawns" class="headerlink" title="Game.spawns"></a>Game.spawns</h1><ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Game.spawns[&#39;spawn 名&#39;].spawnCreep((BODY), &#39;name&#39;, &#123;opts&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>启动 creep 孵化过程。所需的能量量可以从房间里的所有母巢和扩展中提取出来。</p>
 <table>
@@ -507,8 +614,8 @@
 </li>
 </ol>
 <h1 id="Game-creeps"><a href="#Game-creeps" class="headerlink" title="Game.creeps"></a>Game.creeps</h1><ol>
-<li><pre><code class="javascript">Game.creeps[&#39;creep 名&#39;].memory.memory项目名=&#39;内容&#39;
-</code></pre>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;内容&#39;</span><br></pre></td></tr></table></figure>
+
 <p>指向Memory.creeps[creep.name]的链接。可以访问creep的内存对象。</p>
 <p>可以暂时理解为每个creep的备忘录。</p>
 </li>
@@ -984,7 +1091,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">2k</span>
+    <span title="站点总字数">3k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
