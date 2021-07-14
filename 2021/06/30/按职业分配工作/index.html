@@ -23,12 +23,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="按职业分配工作">
 <meta property="og:url" content="http://example.com/2021/06/30/%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/index.html">
-<meta property="og:site_name" content="沧月の快乐小窝">
+<meta property="og:site_name" content="辉光之境 | Cultlantern Associate">
 <meta property="og:description" content="原理 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。 基础函数 修改memory 1Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;项目内容&#39;  可以通过这个指令给creep添加一个memory属性，例如设定职业 1Game.creeps[&#39;builder1&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-30T09:14:07.000Z">
-<meta property="article:modified_time" content="2021-06-30T11:54:50.923Z">
-<meta property="article:author" content="cang_ming">
+<meta property="article:modified_time" content="2021-07-02T06:38:28.630Z">
+<meta property="article:author" content="SurveyorCangMing沧月">
 <meta property="article:tag" content="&lt;Screeps&gt;_">
 <meta name="twitter:card" content="summary">
 
@@ -40,7 +40,7 @@
 <script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;06&#x2F;30&#x2F;%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;30&#x2F;按职业分配工作&#x2F;&quot;,&quot;title&quot;:&quot;按职业分配工作&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>按职业分配工作 | 沧月の快乐小窝</title><script src="/js/config.js"></script>
+<title>按职业分配工作 | 辉光之境 | Cultlantern Associate</title><script src="/js/config.js"></script>
   
 
 
@@ -69,7 +69,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">沧月の快乐小窝</h1>
+      <h1 class="site-title">辉光之境 | Cultlantern Associate</h1>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">forever love <br> 5ZC05oCd5L2z_QAQ</p>
@@ -155,9 +155,9 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="cang_ming"
+    <img class="site-author-image" itemprop="image" alt="SurveyorCangMing沧月"
       src="/images/avatar.png">
-  <p class="site-author-name" itemprop="name">cang_ming</p>
+  <p class="site-author-name" itemprop="name">SurveyorCangMing沧月</p>
   <div class="site-description" itemprop="description">I'll be with you. <br> From now and for always.</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
@@ -221,12 +221,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cang_ming">
+      <meta itemprop="name" content="SurveyorCangMing沧月">
       <meta itemprop="description" content="I'll be with you. <br> From now and for always.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="沧月の快乐小窝">
+      <meta itemprop="name" content="辉光之境 | Cultlantern Associate">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -262,7 +262,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>275</span>
+      <span>387</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -291,6 +291,9 @@
 <p>这里role代表职业，也可以改成别的（自己看得懂就行OAO）</p>
 </li>
 <li><p>检测creep的memory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(Game.creep[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#x3D;&#39;内容&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>可以用来检测creep的职业或者状态，方便安排职业对应工作或同职业分配工作。</p>
 </li>
 </ol>
 
@@ -338,7 +341,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">cang_ming</span>
+  <span class="author" itemprop="copyrightHolder">SurveyorCangMing沧月</span>
 </div>
 <div class="wordcount">
   <span class="post-meta-item">
@@ -353,7 +356,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2 分钟</span>
+    <span title="站点阅读时长">3 分钟</span>
   </span>
 </div>
 

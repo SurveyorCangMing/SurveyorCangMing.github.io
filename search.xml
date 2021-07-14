@@ -14,6 +14,9 @@
 <p>这里role代表职业，也可以改成别的（自己看得懂就行OAO）</p>
 </li>
 <li><p>检测creep的memory</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(Game.creep[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#x3D;&#39;内容&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>可以用来检测creep的职业或者状态，方便安排职业对应工作或同职业分配工作。</p>
 </li>
 </ol>
 ]]></content>
