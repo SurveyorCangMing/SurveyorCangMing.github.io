@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>fabric开发指南</title>
+    <url>/2021/07/26/fabric#1%E5%BC%80%E5%A7%8B&amp;%E7%89%A9%E5%93%81/</url>
+    <content><![CDATA[<h1 id="制作原因"><a href="#制作原因" class="headerlink" title="制作原因"></a>制作原因</h1><p>制作这份“指南”<del>（应该算是吧）</del>的原因其实很简单，首先官方wiki上有一些内容并不是特别详细（毕竟是wiki不是教程），在很多视频里也没有特意提到。另外呢，推荐的软件是idea和Eclipse，网上的视频也几乎只有这两款软件。但是有些人因为各种原因会选用别的软件<del>（比如说我这个笨蛋）</del>，所以我在这里做一份vscode的指南，以供参考。<em>仅供参考啦，有错的可以反馈</em></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="建立开发环境"><a href="#建立开发环境" class="headerlink" title="建立开发环境"></a>建立开发环境</h2><p>首先要从<a href="https://github.com/FabricMC/fabric-example-mod/">下载</a>一份mod的模板，然后删除LICENCE（许可）和README.md（简介）文件，因为这是关于模板的而不是关于你的mod</p>
+<p>的。</p>
+<p>明天再继续写</p>
+<p>//一定不咕</p>
+]]></content>
+      <categories>
+        <category>fabric</category>
+      </categories>
+      <tags>
+        <tag>minecraft</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>按职业分配工作</title>
     <url>/2021/06/30/screeps#2%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p> 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。</p>
@@ -28,18 +44,6 @@
       <tags>
         <tag>&lt;Screeps&gt;_</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>插队算法</title>
-    <url>/2021/05/15/%E6%8F%92%E9%98%9F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="慢慢来不着急"><a href="#慢慢来不着急" class="headerlink" title="慢慢来不着急"></a>慢慢来不着急</h1><h1 id="一年以内必写好"><a href="#一年以内必写好" class="headerlink" title="一年以内必写好"></a>一年以内必写好</h1><h1 id="（话说人设和世界观移到关于里去了）"><a href="#（话说人设和世界观移到关于里去了）" class="headerlink" title="（话说人设和世界观移到关于里去了）"></a>（话说人设和世界观移到关于里去了）</h1><h1 id="下方施工中……"><a href="#下方施工中……" class="headerlink" title="下方施工中……"></a>下方施工中……</h1><p>现在假设有n种VIP，定义n+1的队列</p>
-<p>每个档次对应一个队列，无VIP都对应一个队列</p>
-<h1 id="施工前线"><a href="#施工前线" class="headerlink" title="施工前线"></a>施工前线</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">queue &lt;<span class="keyword">int</span>&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
   </entry>
   <entry>
     <title>全局对象Game和基础脚本</title>
