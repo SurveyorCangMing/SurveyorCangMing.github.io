@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>按职业分配工作</title>
-    <url>/2021/06/30/screeps#2%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/</url>
+    <title>关于妹妹</title>
+    <url>/%E5%85%B3%E4%BA%8E%E5%A6%B9%E5%A6%B9/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="10886c26e68711132812b10806c0740bfacbd95915a9d4a4b07e069542ddaa9c">e0d4adceef025c231e8be3b8e31d4b6aee757e3fd00fea9ea74723526a8d4020</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">我想把妹妹绑起来qaq</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>关于</category>
+      </categories>
+      <tags>
+        <tag>关于</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fabric开发指南-#1开始</title>
+    <url>/fabric1%E5%BC%80%E5%A7%8B&amp;%E7%89%A9%E5%93%81/</url>
+    <content><![CDATA[<h1 id="制作原因"><a href="#制作原因" class="headerlink" title="制作原因"></a>制作原因</h1><p>制作这份“指南”<del>（应该算是吧）</del>的原因其实很简单，首先官方wiki上有一些内容并不是特别详细（毕竟是wiki不是教程），在很多视频里也没有特意提到。另外呢，推荐的软件是idea和Eclipse，网上的视频也几乎只有这两款软件。但是有些人因为各种原因会选用别的软件<del>（比如说我这个笨蛋）</del>，所以我在这里做一份vscode的指南，以供参考。<em>仅供参考啦，有错的可以反馈</em></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="建立开发环境"><a href="#建立开发环境" class="headerlink" title="建立开发环境"></a>建立开发环境</h2><p>首先要从<a href="https://github.com/FabricMC/fabric-example-mod/">下载</a>一份mod的模板，然后删除$$LICENCE$$（许可）和$README.md$（简介）文件，因为这是关于模板的而不是关于你的mod的。然后在vscode中选择打开文件夹，把整个文件夹导入。</p>
+<p>首先打开$$gradle.properties$$文件，更改里面的三个信息</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mod_version &#x3D; 1.0.0 &#x2F;&#x2F;mod的版本</span><br><span class="line">maven_group &#x3D; com.example &#x2F;&#x2F;mod的组</span><br><span class="line">archives_base_name &#x3D; fabric-example-mod &#x2F;&#x2F;mod的名字</span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<p>明天再继续写</p>
+<p>//一定不咕</p>
+]]></content>
+      <categories>
+        <category>fabric</category>
+      </categories>
+      <tags>
+        <tag>minecraft</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>screeps-#2按职业分配工作</title>
+    <url>/screeps2%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p> 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。</p>
 <h1 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h1><ol>
 <li><p>修改memory</p>
@@ -30,32 +71,8 @@
       </tags>
   </entry>
   <entry>
-    <title>fabric开发指南-#1开始</title>
-    <url>/2021/07/26/fabric#1%E5%BC%80%E5%A7%8B&amp;%E7%89%A9%E5%93%81/</url>
-    <content><![CDATA[<h1 id="制作原因"><a href="#制作原因" class="headerlink" title="制作原因"></a>制作原因</h1><p>制作这份“指南”<del>（应该算是吧）</del>的原因其实很简单，首先官方wiki上有一些内容并不是特别详细（毕竟是wiki不是教程），在很多视频里也没有特意提到。另外呢，推荐的软件是idea和Eclipse，网上的视频也几乎只有这两款软件。但是有些人因为各种原因会选用别的软件<del>（比如说我这个笨蛋）</del>，所以我在这里做一份vscode的指南，以供参考。<em>仅供参考啦，有错的可以反馈</em></p>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="建立开发环境"><a href="#建立开发环境" class="headerlink" title="建立开发环境"></a>建立开发环境</h2><p>首先要从<a href="https://github.com/FabricMC/fabric-example-mod/">下载</a>一份mod的模板，然后删除$$LICENCE$$（许可）和$README.md$（简介）文件，因为这是关于模板的而不是关于你的mod的。然后在vscode中选择打开文件夹，把整个文件夹导入。</p>
-<p>首先打开$$gradle.properties$$文件，更改里面的三个信息</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mod_version &#x3D; 1.0.0 &#x2F;&#x2F;mod的版本</span><br><span class="line">maven_group &#x3D; com.example &#x2F;&#x2F;mod的组</span><br><span class="line">archives_base_name &#x3D; fabric-example-mod &#x2F;&#x2F;mod的名字</span><br></pre></td></tr></table></figure>
-
-<p>然后</p>
-<p>明天再继续写</p>
-<p>//一定不咕</p>
-]]></content>
-      <categories>
-        <category>fabric</category>
-      </categories>
-      <tags>
-        <tag>minecraft</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>zc生日快乐</title>
-    <url>/2021/04/18/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/</url>
-    <content><![CDATA[<h1 id="今天是2021年4月18日-zc生日"><a href="#今天是2021年4月18日-zc生日" class="headerlink" title="今天是2021年4月18日  zc生日"></a>今天是2021年4月18日  zc生日</h1><h1 id="祝zc生日快乐"><a href="#祝zc生日快乐" class="headerlink" title="祝zc生日快乐"></a>祝zc生日快乐</h1><img src="/2021/04/18/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/1.jpg" class="">]]></content>
-  </entry>
-  <entry>
-    <title>全局对象Game和基础脚本</title>
-    <url>/2021/05/15/screeps#1%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC/</url>
+    <title>screeps-#1全局对象Game和基础脚本</title>
+    <url>/screeps1%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ol>
 <li><p>spawn 虫巢</p>
 <p>母巢 (spawn) 是你的殖民地中心。此建筑可以创建、更新和回收 creeps 。 你能通过 Game.spanws 这个hash list 访问所有的母巢 (spawn) 。 母巢 (spawn) 每 tick 会生产少许能量，以免玩家陷入无 creep 可用、无 creep 可造的困境。</p>
@@ -215,30 +232,24 @@
       </tags>
   </entry>
   <entry>
-    <title>关于妹妹</title>
-    <url>/2021/08/24/%E5%85%B3%E4%BA%8E%E5%A6%B9%E5%A6%B9/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="93d2430eadb578bc29a085b09599494205254518e7f6d3d274832707751b9861">e0d4adceef025c231e8be3b8e31d4b6a596ccb9b8ac66a39890e1fde3267bf3ca521f36ef232b219ac78b989ec4f83c4daaa56f0564e13ede6f025b189d023734a132a3c0212b96d79e0e43b2188ef5ea9deb73f511e4b9cb308907951ecf076397450ad7882ebf2651d052e33bdbde903efb7147c50e998ed14f9bd3d660b598a97bc62b11000b8701674b789a941fde36e1eaf73d5898a77f0c7ee3a0ed9e2e4db72487164e92c71bcf4dfe9a415a5ce8cbf5c223c59eed6d345277fe72756</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">我想把妹妹绑起来qaq</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>关于</category>
-      </categories>
+    <title>《关于AppleCare+刚到期第一天就把背壳摔碎这件事》</title>
+    <url>/%E3%80%8A%E5%85%B3%E4%BA%8EAppleCare+%E5%88%9A%E5%88%B0%E6%9C%9F%E7%AC%AC%E4%B8%80%E5%A4%A9%E5%B0%B1%E6%8A%8A%E8%83%8C%E5%A3%B3%E6%91%94%E7%A2%8E%E8%BF%99%E4%BB%B6%E4%BA%8B%E3%80%8B/</url>
+    <content><![CDATA[<p>最好笑的事情莫过于AppleCare+刚到期手机就摔了吧</p>
+<p>昨天数学课上，数学老师手机掉地上把背壳摔碎了，捡起来以后说：“反正AppleCare+29号到期，23三号摔一下正好拿去修一下。”我打开设置一看，21号到期。</p>
+<p>到期前我不摔，一到期我就摔，诶就是玩儿</p>
+]]></content>
       <tags>
-        <tag>关于</tag>
+        <tag>日常</tag>
       </tags>
   </entry>
   <entry>
+    <title>zc生日快乐</title>
+    <url>/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/</url>
+    <content><![CDATA[<h1 id="今天是2021年4月18日-zc生日"><a href="#今天是2021年4月18日-zc生日" class="headerlink" title="今天是2021年4月18日  zc生日"></a>今天是2021年4月18日  zc生日</h1><h1 id="祝zc生日快乐"><a href="#祝zc生日快乐" class="headerlink" title="祝zc生日快乐"></a>祝zc生日快乐</h1><img src="/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/1.jpg" class="">]]></content>
+  </entry>
+  <entry>
     <title>关于姐姐</title>
-    <url>/2021/04/17/%E5%85%B3%E4%BA%8E%E5%A7%90%E5%A7%90/</url>
+    <url>/%E5%85%B3%E4%BA%8E%E5%A7%90%E5%A7%90/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
   <script id="hbeData" type="hbeData" data-hmacdigest="d68c9256166f6bd9db46cfbed7d8a94b784814211faeba7be7d1cb67fe883816">9ebfdc8163595e37d2f661794a7509852a0fc250d81a80bbd3216f98c2716928a105978c44a917db0f967c0e52c8d46f470ddeff60b4ef13b50d7641b456f3b7bbc245d950398b6787fda64199b2ccc6a00932f616466b3deb74e1de2066ffc8386af661fc9c5bbd3ffb5bcf21c073b0fc22c7c3692aeca9ebc8f33877e78dd7f7d1fee7eb0ee589c26f6f8eb5c4d26b</script>
   <div class="hbe hbe-content">
@@ -256,17 +267,6 @@
       </categories>
       <tags>
         <tag>关于</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《关于AppleCare+刚到期第一天就把背壳摔碎这件事》</title>
-    <url>/2021/04/23/%E3%80%8A%E5%85%B3%E4%BA%8EAppleCare+%E5%88%9A%E5%88%B0%E6%9C%9F%E7%AC%AC%E4%B8%80%E5%A4%A9%E5%B0%B1%E6%8A%8A%E8%83%8C%E5%A3%B3%E6%91%94%E7%A2%8E%E8%BF%99%E4%BB%B6%E4%BA%8B%E3%80%8B/</url>
-    <content><![CDATA[<p>最好笑的事情莫过于AppleCare+刚到期手机就摔了吧</p>
-<p>昨天数学课上，数学老师手机掉地上把背壳摔碎了，捡起来以后说：“反正AppleCare+29号到期，23三号摔一下正好拿去修一下。”我打开设置一看，21号到期。</p>
-<p>到期前我不摔，一到期我就摔，诶就是玩儿</p>
-]]></content>
-      <tags>
-        <tag>日常</tag>
       </tags>
   </entry>
 </search>
