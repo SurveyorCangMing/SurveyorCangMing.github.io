@@ -1,207 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>screeps-#1全局对象Game和基础脚本</title>
-    <url>/screeps1%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Game%E5%92%8C%E5%9F%BA%E7%A1%80%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ol>
-<li><p>spawn 虫巢</p>
-<p>母巢 (spawn) 是你的殖民地中心。此建筑可以创建、更新和回收 creeps 。 你能通过 Game.spanws 这个hash list 访问所有的母巢 (spawn) 。 母巢 (spawn) 每 tick 会生产少许能量，以免玩家陷入无 creep 可用、无 creep 可造的困境。</p>
-</li>
-<li><p>creep 爬虫</p>
-<p>creep 是你的单位, creep 可以移动、采集能量、建造建筑、攻击其他 creep 以及执行其他动作。每个 creep 都由最多 50 个身体部件构成，身体部件的类型如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">身体部件</th>
-<th align="left">孵化成本</th>
-<th align="left">每个部件效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>MOVE</code></td>
-<td align="left">50</td>
-<td align="left">每 tick 减少 2 点疲惫值</td>
-</tr>
-<tr>
-<td align="left"><code>WORK</code></td>
-<td align="left">100</td>
-<td align="left">每 tick 从能量源采集 2 单位能量。每 tick 从矿区采集 1 单位矿物。每 tick 增加工地建设进度 5 点，花费 5 单位能量。每 tick 增加建筑 100 耐久度，花费 1 单位能量。每 tick 拆减建筑 50 点耐久，并返还 0.25 单位能量。每 tick 提高控制器升级进度 1 点，花费 1 单位能量。</td>
-</tr>
-<tr>
-<td align="left"><code>CARRY</code></td>
-<td align="left">50</td>
-<td align="left">携带最多 50 单位资源。</td>
-</tr>
-<tr>
-<td align="left"><code>ATTACK</code></td>
-<td align="left">80</td>
-<td align="left">对相邻的 creep 或建筑造成 30 点伤害。</td>
-</tr>
-<tr>
-<td align="left"><code>RANGED_ATTACK</code></td>
-<td align="left">150</td>
-<td align="left">单个目标时，每 tick 对 creep 或建筑造成 10 点伤害，范围为 3 格。多个目标时，每 tick 对范围内所有 creep 与建筑造成 1-4-10 点伤害，具体伤害取决于距离，范围为 3 格。</td>
-</tr>
-<tr>
-<td align="left"><code>HEAL</code></td>
-<td align="left">250</td>
-<td align="left">治疗对象可为自己或其它 creep。自愈或治疗相邻 creep 时每 tick 恢复 12 点耐久，一定距离内远程治疗每 tick 恢复 4 点耐久。</td>
-</tr>
-<tr>
-<td align="left"><code>CLAIM</code></td>
-<td align="left">600</td>
-<td align="left">占领一个中立房间的控制器。每部件每 tick 使己方对中立房间控制器的预定时间增加 1 tick，或使其他玩家的预定时间减少 1 tick。每部件每 tick 使其他玩家控制器降级计数器加速 300 tick。注：拥有该部件的 creep 寿命只有 600 tick，且无法被 renew。</td>
-</tr>
-<tr>
-<td align="left"><code>TOUGH</code></td>
-<td align="left">10</td>
-<td align="left">无附加效果，唯一作用是增加 creep 的最大耐久值。可被强化以承受更多伤害。</td>
-</tr>
-</tbody></table>
-<p>生成爬虫的孵化成本类型为能量，从SPAWN和EXTENSION中获取</p>
-</li>
-</ol>
-<h1 id="Game"><a href="#Game" class="headerlink" title="Game"></a>Game</h1><ol>
-<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Game.spawns[&#39;spawn 名&#39;]</span><br><span class="line">object&lt;string, StructureSpawn&gt;</span><br></pre></td></tr></table></figure>
-
-<p>包含你所有 spawn 的 hash，以 spawn 名作为关键字。</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;]</span><br><span class="line">object&lt;string, Creep&gt;</span><br></pre></td></tr></table></figure>
-
-<p>包含你所有 creep 的 hash，并以 creep 名作为关键字。</p>
-</li>
-</ol>
-<h1 id="Game-spawns"><a href="#Game-spawns" class="headerlink" title="Game.spawns"></a>Game.spawns</h1><ol>
-<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Game.spawns[&#39;spawn 名&#39;].spawnCreep((BODY), &#39;name&#39;, &#123;opts&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>启动 creep 孵化过程。所需的能量量可以从房间里的所有母巢和扩展中提取出来。</p>
-<table>
-<thead>
-<tr>
-<th align="left">parameter</th>
-<th align="left">type</th>
-<th align="left">description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>body</code></td>
-<td align="left">array<string></td>
-<td align="left">描述新 creep’s body 的数组。应该包含1至50个元素（以下常量之一）<code>WORK</code> <code>MOVE</code> <code>CARRY</code> <code>ATTACK</code> <code>RANGED_ATTACK</code> <code>HEAL</code> <code>TOUGH</code> <code>CLAIM</code></td>
-</tr>
-<tr>
-<td align="left"><code>name</code></td>
-<td align="left">string</td>
-<td align="left">新 creep 的名字。它应是个独一无二的 creep 名以保证 <code>Game.creeps</code> 不含有重名的的 creep 。</td>
-</tr>
-<tr>
-<td align="left"><code>opts (可选)</code></td>
-<td align="left">object</td>
-<td align="left">为孵化进程提供附加选项的对象。<br>1. memory （any）一个新 creep 的 memory 。如果提供，它将立即存储到<code>Memory.creeps[name]</code>。<br>2. energyStructures （array）孵化时使用能量的 spawns/extensions 数组，建筑将按顺序使用其中的能量。<br>3. dryRun （boolean）如果“dryRun”为 true，则操作将仅检查是否可以孵化 creep。<br>4. directions （array）设置 creep 出生时移动的方向，是一个带有以下常量的数组:<code>TOP</code> <code>TOP_RIGHT</code> <code>RIGHT</code> <code>BOTTOM_RIGHT</code> <code>BOTTOM</code> <code>BOTTOM_LEFT</code> <code>LEFT</code> <code>TOP_LEFT</code></td>
-</tr>
-</tbody></table>
-<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>如下错误码之一：</p>
-<table>
-<thead>
-<tr>
-<th align="left">constant</th>
-<th align="left">value</th>
-<th align="left">description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>OK</code></td>
-<td align="left">0</td>
-<td align="left">这个操作已经成功纳入计划。</td>
-</tr>
-<tr>
-<td align="left"><code>ERR_NOT_OWNER</code></td>
-<td align="left">-1</td>
-<td align="left">你不是该母巢 (spawn) 的所有者。</td>
-</tr>
-<tr>
-<td align="left"><code>ERR_NAME_EXISTS</code></td>
-<td align="left">-3</td>
-<td align="left">已经有一个叫这个名字的 creep 了。</td>
-</tr>
-<tr>
-<td align="left"><code>ERR_BUSY</code></td>
-<td align="left">-4</td>
-<td align="left">这个母巢 (spawn) 已经在孵化另一个 creep 了。</td>
-</tr>
-<tr>
-<td align="left"><code>ERR_NOT_ENOUGH_ENERGY</code></td>
-<td align="left">-6</td>
-<td align="left">这个母巢 (spawn) 和他的扩展包含的能量不足以孵化具有给定 body 的 creep。</td>
-</tr>
-<tr>
-<td align="left"><code>ERR_INVALID_ARGS</code></td>
-<td align="left">-10</td>
-<td align="left">Body 没有被恰当地描述。</td>
-</tr>
-<tr>
-<td align="left"><code>ERR_RCL_NOT_ENOUGH</code></td>
-<td align="left">-14</td>
-<td align="left">您的房间控制器级别不足以使用此 spawn。</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<h1 id="Game-creeps"><a href="#Game-creeps" class="headerlink" title="Game.creeps"></a>Game.creeps</h1><ol>
-<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;内容&#39;</span><br></pre></td></tr></table></figure>
-
-<p>指向Memory.creeps[creep.name]的链接。可以访问creep的内存对象。</p>
-<p>可以暂时理解为每个creep的备忘录。</p>
-</li>
-</ol>
-]]></content>
+    <title>关于妹妹</title>
+    <url>/%E5%85%B3%E4%BA%8E%E5%A6%B9%E5%A6%B9/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="452cd1336709f4ecf9dbb3531252bedd2927546fe8bae6e8c9f30df2ae8e4e6c">e0d4adceef025c231e8be3b8e31d4b6a99d970fe637535933d5b18211f46ef137f3e497f37ba0c79efde8cfbe516a6d665e443fe6082f70cad2d9a7df544d4732cf0fdaadfd9e33b2d115f8519cd87de2a1f0c6c2eca69871239d7a6ab571fffdd8af6535c50464ac46a72e0c8b2e57fdfe16e133cb46f6f677f2766e0b48685103700bb79d2e36db7ab08f59ce7a6f77c6d688a108e51b4620636314035e5eb75ec5f2331a36b579db6f8e14012ada43ece95e4c0b7fb9753d0ecb364585d6acf2140ace88d9c3efb0a9841a2e7351a91e71532ba1c97c7aa0666a807b47c3912f26f091bb74c02e886c7476f8be6705b7d45e2057a49186a2feb48206751c1052f7a85597778f8e114dd21bfde811dce71269b094bd992ac94959925956141f7a74fe6df6cbf0ba61a7522e8e9044d9d558c0d0895b917ad77a267d5b59a836a07b68a9b4025650cd115d6dee7b14ecfd7fe91fb306c2abf68dac149bbe22623822d5c82ddb37e2d50c59738c85365b1e7c373db88ddda2865a397b74c94689963158019f546122211a9391115916d88b5f11ae744f06ee6de88845adc2712166299adede245d0ce3550c35b15c06fb09c751fbb99dcbfad5f35754acef83ab43cf6887c896e55c754ae394eb69365930a7ecc6236fcb46e69d6b624f66b6228cefe2ba97bbee53e5bcefb61aa4afa0db7f2c08f91d68e740cdb45c2b6d74f3ddd2956c335b14230d79a01188d9ffe27bf922e0415fe248a1e1381c2b9c7655a4fca5e00c3231d356d327d920476accc50494363f5008538d1afd4bfcbf552f9ffb0c263bb83f35f9b6fa0b4c5a56db7ac5922cd2e30ea5a6e4710436ad10437cdf4dfb65fb041e5b11c4e69e35cd0a859370742520d3fc350f503ae6c99392645225dd6312de94d3baa5f1f3ec33a7aea308110e7ee8c1a429bf43150fd982aa7b62095f979208e77317ede2ae09de08c8ec39a257b9e38c1e899e4d1b8cf0dbc0f64b0a5d584d8b3b79995e30adb</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">我想把妹妹绑起来qaq</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>Screeps</category>
+        <category>关于</category>
       </categories>
       <tags>
-        <tag>Screeps</tag>
-        <tag>游戏</tag>
+        <tag>关于</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>screeps-#2按职业分配工作</title>
-    <url>/screeps2%E6%8C%89%E8%81%8C%E4%B8%9A%E5%88%86%E9%85%8D%E5%B7%A5%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p> 通过给每个creep的memory增加一个属性来定义职业，然后检测每个creep的职业分别制定任务。</p>
-<h1 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h1><ol>
-<li><p>修改memory</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Game.creeps[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#39;项目内容&#39;</span><br></pre></td></tr></table></figure>
-
-<p>可以通过这个指令给creep添加一个memory属性，例如设定职业</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Game.creeps[&#39;builder1&#39;].memory.role&#x3D;&#39;builder&#39;</span><br></pre></td></tr></table></figure>
-
-<p>这里role代表职业，也可以改成别的（自己看得懂就行OAO）</p>
-</li>
-<li><p>检测creep的memory</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(Game.creep[&#39;creep 名&#39;].memory.memory项目名&#x3D;&#x3D;&#39;内容&#39;)</span><br></pre></td></tr></table></figure>
-
-<p>可以用来检测creep的职业或者状态，方便安排职业对应工作或同职业分配工作。</p>
-</li>
-<li><p>各类职业的工作 - 采集者harvester</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const target &#x3D; creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);</span><br><span class="line">if(target)&#123;</span><br><span class="line">	if(creep.harvester(target) &#x3D;&#x3D; ERR_NOT_IN_RANGE)&#123;</span><br><span class="line">		creep.moveTo(target);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Screeps</category>
-      </categories>
-      <tags>
-        <tag>Screeps</tag>
-        <tag>游戏</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>zc生日快乐</title>
-    <url>/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/</url>
-    <content><![CDATA[<h1 id="今天是2021年4月18日-zc生日"><a href="#今天是2021年4月18日-zc生日" class="headerlink" title="今天是2021年4月18日  zc生日"></a>今天是2021年4月18日  zc生日</h1><h1 id="祝zc生日快乐"><a href="#祝zc生日快乐" class="headerlink" title="祝zc生日快乐"></a>祝zc生日快乐</h1><img src="/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/1.jpg" class="">]]></content>
   </entry>
   <entry>
     <title>fabric开发指南-#1开始</title>
     <url>/fabric1%E5%BC%80%E5%A7%8B&amp;%E7%89%A9%E5%93%81/</url>
-    <content><![CDATA[<h1 id="制作原因"><a href="#制作原因" class="headerlink" title="制作原因"></a>制作原因</h1><p>制作这份“指南”<del>（应该算是吧）</del>的原因其实很简单，首先官方wiki上有一些内容并不是特别详细（毕竟是wiki不是教程），在很多视频里也没有特意提到。另外呢，推荐的软件是idea和Eclipse，网上的视频也几乎只有这两款软件。但是有些人因为各种原因会选用别的软件<del>（比如说我这个笨蛋）</del>，所以我在这里做一份vscode的指南，以供参考。<em>仅供参考啦，有错的可以反馈</em></p>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="建立开发环境"><a href="#建立开发环境" class="headerlink" title="建立开发环境"></a>建立开发环境</h2><p>首先要从<a href="https://github.com/FabricMC/fabric-example-mod/">下载</a>一份mod的模板，然后删除LICENCE（许可）和README.md（简介）文件，因为这是关于模板的而不是关于你的mod的。然后在vscode中选择打开文件夹，把整个文件夹导入。</p>
+    <content><![CDATA[<h1 id="制作原因"><a href="#制作原因" class="headerlink" title="制作原因"></a>制作原因</h1><p>制作这份“指南”<del>（应该算是吧）</del>的原因其实很简单，首先官方wiki上有一些内容并不是特别详细（毕竟是wiki不是教程），在很多视频里也没有特意提到。<em>仅供参考啦，有错的可以反馈！</em>啊对了，官方推荐的是idea，可以的话还是用idea吧，不同软件上手很快的啦！</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="下载idea"><a href="#下载idea" class="headerlink" title="下载idea"></a>下载idea</h2><h2 id="建立开发环境"><a href="#建立开发环境" class="headerlink" title="建立开发环境"></a>建立开发环境</h2><p>明天再继续写</p>
+<p>//一定不咕</p>
+<p>首先要从<a href="https://github.com/FabricMC/fabric-example-mod/">下载</a>一份mod的模板，然后删除LICENCE（许可）和README.md（简介）文件，因为这是关于模板的而不是关于你的mod的。然后在vscode中选择打开文件夹，把整个文件夹导入。</p>
 <p>首先打开gradle.properties文件，更改里面的三个信息</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mod_version &#x3D; 1.0.0 &#x2F;&#x2F;mod的版本</span><br><span class="line">maven_group &#x3D; com.example &#x2F;&#x2F;mod的组</span><br><span class="line">archives_base_name &#x3D; fabric-example-mod &#x2F;&#x2F;mod的名字</span><br></pre></td></tr></table></figure>
 
@@ -228,26 +55,9 @@
       </tags>
   </entry>
   <entry>
-    <title>关于妹妹</title>
-    <url>/%E5%85%B3%E4%BA%8E%E5%A6%B9%E5%A6%B9/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="452cd1336709f4ecf9dbb3531252bedd2927546fe8bae6e8c9f30df2ae8e4e6c">e0d4adceef025c231e8be3b8e31d4b6a99d970fe637535933d5b18211f46ef137f3e497f37ba0c79efde8cfbe516a6d665e443fe6082f70cad2d9a7df544d4732cf0fdaadfd9e33b2d115f8519cd87de2a1f0c6c2eca69871239d7a6ab571fffdd8af6535c50464ac46a72e0c8b2e57fdfe16e133cb46f6f677f2766e0b48685103700bb79d2e36db7ab08f59ce7a6f77c6d688a108e51b4620636314035e5eb75ec5f2331a36b579db6f8e14012ada43ece95e4c0b7fb9753d0ecb364585d6acf2140ace88d9c3efb0a9841a2e7351a91e71532ba1c97c7aa0666a807b47c3912f26f091bb74c02e886c7476f8be6705b7d45e2057a49186a2feb48206751c1052f7a85597778f8e114dd21bfde811dce71269b094bd992ac94959925956141f7a74fe6df6cbf0ba61a7522e8e9044d9d558c0d0895b917ad77a267d5b59a836a07b68a9b4025650cd115d6dee7b14ecfd7fe91fb306c2abf68dac149bbe22623822d5c82ddb37e2d50c59738c85365b1e7c373db88ddda2865a397b74c94689963158019f546122211a9391115916d88b5f11ae744f06ee6de88845adc2712166299adede245d0ce3550c35b15c06fb09c751fbb99dcbfad5f35754acef83ab43cf6887c896e55c754ae394eb69365930a7ecc6236fcb46e69d6b624f66b6228cefe2ba97bbee53e5bcefb61aa4afa0db7f2c08f91d68e740cdb45c2b6d74f3ddd2956c335b14230d79a01188d9ffe27bf922e0415fe248a1e1381c2b9c7655a4fca5e00c3231d356d327d920476accc50494363f5008538d1afd4bfcbf552f9ffb0c263bb83f35f9b6fa0b4c5a56db7ac5922cd2e30ea5a6e4710436ad10437cdf4dfb65fb041e5b11c4e69e35cd0a859370742520d3fc350f503ae6c99392645225dd6312de94d3baa5f1f3ec33a7aea308110e7ee8c1a429bf43150fd982aa7b62095f979208e77317ede2ae09de08c8ec39a257b9e38c1e899e4d1b8cf0dbc0f64b0a5d584d8b3b79995e30adb</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">我想把妹妹绑起来qaq</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>关于</category>
-      </categories>
-      <tags>
-        <tag>关于</tag>
-      </tags>
+    <title>zc生日快乐</title>
+    <url>/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/</url>
+    <content><![CDATA[<h1 id="今天是2021年4月18日-zc生日"><a href="#今天是2021年4月18日-zc生日" class="headerlink" title="今天是2021年4月18日  zc生日"></a>今天是2021年4月18日  zc生日</h1><h1 id="祝zc生日快乐"><a href="#祝zc生日快乐" class="headerlink" title="祝zc生日快乐"></a>祝zc生日快乐</h1><img src="/zc%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/1.jpg" class="">]]></content>
   </entry>
   <entry>
     <title>关于姐姐</title>
